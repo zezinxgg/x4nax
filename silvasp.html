@@ -313,6 +313,40 @@ body {
     text-decoration: underline;
 }
 </style>
+  <script>
+  document.addEventListener('keydown', function (e) {
+    // Bloquear Ctrl+S
+    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 's') {
+      e.preventDefault();
+      window.location.href = "devtools.html";
+    }
+
+    // Bloquear F12
+    if (e.key === 'F12') {
+      e.preventDefault();
+      window.location.href = "devtools.html";
+    }
+
+    // Bloquear Ctrl+Shift+I
+    if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'i') {
+      e.preventDefault();
+      window.location.href = "devtools.html";
+    }
+
+    // Ctrl+U (ver código fonte)
+    if (e.ctrlKey && e.key.toLowerCase() === 'u') {
+      e.preventDefault();
+      window.location.href = "devtools.html";
+    }
+  });
+
+  // Bloquear clique com botão direito
+  document.addEventListener('contextmenu', function (e) {
+    e.preventDefault();
+    window.location.href = "devtools.html";
+  });
+</script>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -392,3 +426,4 @@ body {
 </body>
 
 </html>
+
