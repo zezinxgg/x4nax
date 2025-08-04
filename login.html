@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>x4nax — Login</title>
+  <link href="https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #0c0c0c;
+      color: #f1f1f1;
+      font-family: monospace;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .overlay {
+      background: radial-gradient(circle, #121212 0%, #050505 100%);
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .login-container {
+      text-align: center;
+      padding: 40px;
+      background: rgba(20, 20, 20, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      backdrop-filter: blur(6px);
+      box-shadow: 0 0 15px rgba(255, 0, 100, 0.05);
+      max-width: 400px;
+      width: 90%;
+    }
+
+    .login-title {
+      font-family: 'UnifrakturCook', cursive;
+      font-size: 3.5em;
+      margin: 0 0 20px 0;
+      color: #c96eff;
+      letter-spacing: 1px;
+      text-shadow: 0 0 5px #9f00ff88;
+    }
+
+    .login-container input {
+      width: 100%;
+      padding: 12px 14px;
+      margin: 10px 0;
+      background: rgba(20, 20, 20, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 5px;
+      color: #f1f1f1;
+      font-size: 14px;
+      font-family: monospace;
+      box-sizing: border-box;
+    }
+
+    .login-container input::placeholder {
+      color: #666;
+    }
+
+    .login-container button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 15px;
+      border: none;
+      border-radius: 5px;
+      background: linear-gradient(90deg, #7000a0, #b400f1);
+      color: white;
+      font-weight: bold;
+      font-size: 15px;
+      font-family: monospace;
+      letter-spacing: 1px;
+      opacity: 0.4;
+      cursor: not-allowed;
+      transition: 0.3s ease;
+    }
+
+    .login-container button:hoverfluid {
+      background: linear-gradient(90deg, #9e00ff, #ff00c8);
+      box-shadow: 0 0 10px rgba(255, 0, 200, 0.3);
+      opacity: 1;
+      cursor: pointer;
+    }
+
+    .login-footer {
+      margin-top: 20px;
+      font-size: 0.8em;
+      color: #666;
+      letter-spacing: 2px;
+      font-family: monospace;
+    }
+
+    .login-footer a {
+      color: #c96eff;
+      text-decoration: none;
+      transition: 0.3s ease;
+    }
+
+    .login-footer a:hover {
+      color: #ff00c8;
+      text-shadow: 0 0 5px rgba(255, 0, 200, 0.3);
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay">
+    <div class="login-container">
+      <div class="login-title">x4nax</div>
+
+      <input type="text" placeholder="Usuário / Email" disabled />
+      <input type="password" placeholder="Senha" disabled />
+
+      <button disabled>Entrar</button>
+
+      <div class="login-footer">
+                Ainda não disponível.<br>
+        <a href="index.html">Voltar à página inicial</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

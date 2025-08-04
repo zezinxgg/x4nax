@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&display=swap');
+
+body {
+  margin: 0;
+  padding: 0;
+  background: #0c0c0c;
+  color: #f1f1f1;
+  font-family: monospace;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.overlay {
+  background: radial-gradient(circle, #121212 0%, #050505 100%);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.intro-box {
+  text-align: center;
+  padding: 40px;
+  background: rgba(20, 20, 20, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 0 15px rgba(255, 0, 100, 0.05);
+}
+
+.logo {
+  font-family: 'UnifrakturCook', cursive;
+  font-size: 3.5em;
+  margin: 0 0 10px 0;
+  color: #c96eff;
+  letter-spacing: 1px;
+  text-shadow: 0 0 5px #9f00ff88;
+}
+
+.tagline {
+  font-size: 0.9em;
+  color: #bbb;
+  margin-bottom: 10px;
+  font-style: italic;
+}
+
+.status {
+  font-size: 0.8em;
+  color: #666;
+  margin-bottom: 30px;
+  letter-spacing: 2px;
+}
+
+.enter-btn {
+  display: inline-block;
+  padding: 12px 25px;
+  font-size: 0.9em;
+  font-weight: bold;
+  letter-spacing: 1px;
+  color: white;
+  background: linear-gradient(90deg, #7000a0, #b400f1);
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: 0.3s ease;
+}
+
+.enter-btn:hover {
+  background: linear-gradient(90deg, #9e00ff, #ff00c8);
+  box-shadow: 0 0 10px rgba(255, 0, 200, 0.3);
+}
