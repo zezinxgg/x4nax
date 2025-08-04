@@ -315,6 +315,13 @@ body {
 }
 </style>
   <script>
+    setInterval(() => {
+  const widthThreshold = window.outerWidth - window.innerWidth > 160;
+  const heightThreshold = window.outerHeight - window.innerHeight > 160;
+  if (widthThreshold || heightThreshold) {
+    window.location.href = "devtools.html";
+  }
+}, 1000);
   document.addEventListener('keydown', function (e) {
     // Bloquear Ctrl+S
     if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 's') {
@@ -413,4 +420,5 @@ body {
     <script src="app.js"></script>
 </body>
 </html>
+
 
