@@ -1,437 +1,139 @@
 <!DOCTYPE html>
-<html lang="en">
-<style rel="stylesheet">
-@import url('https://fonts.googleapis.com/css2?family=Intel+One+Mono:ital,wght@0,300..700;1,300..700&display=swap');
-.bio-poem {
-  font-family: 'Intel One Mono', cursive;
-  font-size: 1em;
-  color: rgba(255, 255, 255, 0.75);
-  margin-top: -5px;
-  margin-bottom: 10px;
-  max-width: 320px;
-  line-height: 1.5em;
-  text-align: left;
-  background: rgba(255, 255, 255, 0.02);
-  padding: 10px 16px;
-  border-left: 0px solid rgba(255, 255, 255, 0.08);
-  border-radius: 6px;
-  box-shadow: 0 0 6px rgba(255, 255, 255, 0.04);
-  backdrop-filter: blur(1px);
-  transition: all 0.3s ease-in-out;
-  align-self: flex-start;
-}
-.bio-poem:hover {
-  background: rgba(255, 255, 255, 0.04);
-  border-left-color: rgba(18, 0, 83, 0.637);
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-}
-
-body {
-    background-color: rgb(0, 0, 0);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    margin: 0;
-    font-family: 'Press Start 2P', cursive; /* Using pixel art font */
-    color: white; /* Default text color */
-    text-align: center;
-    overflow: hidden; /* Prevent scrollbars */
-}
-
-* {
-    user-select: none;
-    -webkit-user-drag: none;
-}
-
-.container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px; /* Space between elements */
-    padding: 20px;
-}
-
-.profile-layout {
-    display: flex;
-    align-items: center;
-    gap: 30px; /* Space between cat GIF and the text/icons column */
-}
-
-.details-column {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start; /* Align text and icons to the left within their column */
-    gap: 15px; /* Space between handle and icons */
-}
-
-.cat-gif {
-    width: 250px; /* Adjust size as needed */
-    height: auto;
-    pointer-events: none;
-    image-rendering: crisp-edges; /* Ensures pixel art quality on zoom */
-    image-rendering: pixelated; /* Ensures pixel art quality on zoom */
-}
-
-.instagram-handle {
-    font-size: 1.8em;
-    margin: 0;
-    font-weight: bold;
-    background: linear-gradient(270deg, red, orange, yellow, green, blue, indigo, violet);
-    background-size: 1400% 1400%;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: rainbow-text 6s ease infinite;
-    color: white; /* fallback */
-    text-shadow: 2px 2px 0px #ffffff; /* sombra suave para contraste */
-}
-
-@keyframes rainbow-text {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
-.languages-icons {
-    display: flex;
-    gap: 15px; /* Space between language icons */
-    margin-top: 10px;
-    pointer-events: none;
-}
-
-.lang-icon {
-    width: 48px; /* Fixed size for pixel art icons */
-    height: 48px;
-    image-rendering: crisp-edges;
-    image-rendering: pixelated;
-}
-
-.music-vinyls {
-    display: flex;
-    gap: 25px;
-    margin-top: 15px;
-    padding: 10px 0;
-}
-
-.vinyl-record {
-    position: relative;
-    width: 80px;
-    height: 80px;
-    cursor: pointer;
-}
-
-.vinyl-cover {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 80px;
-    height: 80px;
-    z-index: 2;
-    border-radius: 6px;
-    overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
-    transition: transform 0.5s ease;
-    background: #222;
-}
-
-.album-cover {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    image-rendering: crisp-edges;
-    image-rendering: pixelated;
-}
-
-/* Vinil melhorado */
-.vinyl-disc {
-    position: absolute;
-    top: 15px;
-    left: 40px;
-    width: 70px;
-    height: 70px;
-    border-radius: 50%;
-    z-index: 1;
-    opacity: 0;
-    transition: opacity 0.5s ease;
-    box-shadow:
-      inset 0 0 8px 2px rgba(0,0,0,0.9),
-      0 4px 10px rgba(0, 0, 0, 0.6);
-    background:
-      radial-gradient(circle at center,
-        #222 40%,
-        #111 45%,
-        #222 50%,
-        #111 55%,
-        #222 60%,
-        #111 65%,
-        #222 70%,
-        #111 75%,
-        #222 80%,
-        #111 85%,
-        #222 90%,
-        #111 95%,
-        #222 100%);
-    animation: subtle-glow 6s ease-in-out infinite alternate;
-}
-
-.vinyl-disc::before {
-    content: '';
-    position: absolute;
-    top: 12px;
-    left: 18px;
-    width: 30px;
-    height: 12px;
-    border-radius: 50% / 40%;
-    background: rgba(255, 255, 255, 0.15);
-    filter: blur(1.2px);
-    pointer-events: none;
-    mix-blend-mode: screen;
-}
-
-.vinyl-disc::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 14px;
-    height: 14px;
-    background: radial-gradient(circle, #222 40%, #555 100%);
-    border-radius: 50%;
-    border: 2px solid #444;
-    box-shadow:
-      inset 0 0 3px rgba(255,255,255,0.3),
-      0 0 6px rgba(0,0,0,0.6);
-    transform: translate(-50%, -50%);
-}
-
-.vinyl-record:hover .vinyl-cover {
-    transform: translateX(-25px);
-}
-
-.vinyl-record:hover .vinyl-disc {
-    opacity: 1;
-    animation: spin 4s linear infinite, subtle-glow 6s ease-in-out infinite alternate;
-}
-
-/* Animações */
-@keyframes spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-}
-
-@keyframes subtle-glow {
-    0% { box-shadow:
-        inset 0 0 6px 2px rgba(0,0,0,0.7),
-        0 4px 8px rgba(0, 0, 0, 0.4); }
-    100% { box-shadow:
-        inset 0 0 12px 4px rgba(0,0,0,0.9),
-        0 6px 15px rgba(0, 0, 0, 0.7); }
-}
-
-/* Responsive adjustments */
-@media (max-width: 600px) {
-    .profile-layout {
-        flex-direction: column;
-        gap: 20px;
-    }
-
-    .ascii-dragon {
-        font-family: monospace;
-        font-size: 10px;
-        line-height: 10px;
-        white-space: pre;
-        color: #ffffff;
-        max-width: 100%;
-        overflow-x: auto;
-    }
-
-    .instagram-handle {
-        font-size: 1.4em;
-        text-align: center;
-        width: 100%;
-    }
-
-    .details-column {
-        align-items: center;
-    }
-
-    .languages-icons {
-        gap: 10px;
-        justify-content: center;
-    }
-
-    .lang-icon {
-        width: 40px;
-        height: 40px;
-    }
-
-    .music-vinyls {
-        gap: 20px;
-        justify-content: center;
-        flex-wrap: wrap;
-    }
-
-    .vinyl-record {
-        width: 70px;
-        height: 70px;
-    }
-
-    .vinyl-cover {
-        width: 70px;
-        height: 70px;
-    }
-
-    .vinyl-disc {
-        width: 60px;
-        height: 60px;
-        top: 5px;
-        left: 35px;
-    }
-
-    .vinyl-record:hover .vinyl-cover {
-        transform: translateX(-20px);
-    }
-}
-
-.powered-by {
-    position: fixed;
-    left: 10px;
-    bottom: 10px;
-    font-family: 'Press Start 2P', cursive;
-    font-size: 10px;
-    color: #888;
-    user-select: none;
-    z-index: 1000;
-}
-
-.powered-by a {
-    color: rgb(162, 0, 255);
-    text-decoration: none;
-}
-
-.powered-by a:hover {
-    text-decoration: underline;
-}
-</style>
-  <script>
-    setInterval(() => {
-  const widthThreshold = window.outerWidth - window.innerWidth > 160;
-  const heightThreshold = window.outerHeight - window.innerHeight > 160;
-  if (widthThreshold || heightThreshold) {
-    window.location.href = "devtools.html";
-  }
-}, 1000);
-  document.addEventListener('keydown', function (e) {
-    // Bloquear Ctrl+S
-    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 's') {
-      e.preventDefault();
-      window.location.href = "devtools.html";
-    }
-
-    // Bloquear F12
-    if (e.key === 'F12') {
-      e.preventDefault();
-      window.location.href = "devtools.html";
-    }
-
-    // Bloquear Ctrl+Shift+I
-    if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'i') {
-      e.preventDefault();
-      window.location.href = "devtools.html";
-    }
-
-    // Ctrl+U (ver código fonte)
-    if (e.ctrlKey && e.key.toLowerCase() === 'u') {
-      e.preventDefault();
-      window.location.href = "devtools.html";
-    }
-  });
-
-  // Bloquear clique com botão direito
-  document.addEventListener('contextmenu', function (e) {
-    e.preventDefault();
-    window.location.href = "devtools.html";
-  });
-</script>
-
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@silvasp012</title>
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Site em Manutenção</title>
+<style>
+    * {
+        margin: 0; padding: 0; box-sizing: border-box;
+    }
+    body {
+        background-color: #000;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: Georgia, serif;
+        overflow: hidden;
+        position: relative;
+    }
+    .falling-pills {
+        position: fixed;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        pointer-events: none;
+        z-index: -1;
+        overflow: visible;
+    }
+    .pill {
+        position: absolute;
+        width: 30px; height: 30px;
+        background-image: url('images/pills.png');
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        opacity: 0; /* começa invisível */
+        animation-name: fall;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+        animation-fill-mode: forwards;
+        will-change: transform;
+    }
+    /* fallback emoji caso não carregue imagem */
+    .pill::before {
+        content: '';
+        position: absolute;
+        font-size: 24px;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        display: block;
+    }
+    @keyframes fall {
+        0% {
+            transform: translateY(-40px) rotate(0deg);
+            opacity: 0;
+        }
+        10% {
+            opacity: 1;
+        }
+        90% {
+            opacity: 1;
+        }
+        100% {
+            transform: translateY(100vh) rotate(360deg);
+            opacity: 0;
+        }
+    }
+    .maintenance-text {
+        color: white;
+        font-size: 42px;
+        cursor: pointer;
+        position: relative;
+        user-select: none;
+        font-weight: 300;
+        letter-spacing: 2px;
+        transition: all 0.3s ease;
+    }
+    .blur-word {
+        text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+        filter: blur(1px);
+        transition: all 0.3s ease;
+    }
+    .maintenance-text:hover .blur-word {
+        filter: blur(0px);
+        text-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+    }
+    .tooltip {
+        position: absolute;
+        bottom: 120%;
+        left: 50%;
+        transform: translateX(-50%);
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 18px;
+        font-family: 'Brush Script MT', cursive;
+        font-style: italic;
+        white-space: nowrap;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.4s ease;
+        text-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
+        filter: drop-shadow(0 2px 8px rgba(255, 255, 255, 0.3));
+        letter-spacing: 1px;
+    }
+    .maintenance-text:hover .tooltip {
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(-50%) translateY(-5px);
+    }
+</style>
 </head>
 <body>
-    <div class="powered-by"><a href="https://x4nax.vercel.app" target="_blank" rel="noopener noreferrer">x4nax.vercel.app</a></div>
 
-<div class="container">
-        <div class="profile-layout">
-    <pre class="ascii-dragon">
-                .88888888:.
-               88888888.88888.
-             .8888888888888888.
-             888888888888888888
-             88' _`88'_  `88888
-             88 88 88 88  88888
-             88_88_::_88_:88888
-             88:::,::,:::::8888
-             88`:::::::::'`8888
-            .88  `::::'    8:88.
-           8888            `8:888.
-         .8888'             `888888.
-        .8888:..  .::.  ...:'8888888:.
-       .8888.'     :'     `'::`88:88888
-      .8888        '         `.888:8888.
-     888:8         .           888:88888
-   .888:88        .:           888:88888:
-   8888888.       ::           88:888888
-   `.::.888.      ::          .88888888
-  .::::::.888.    ::         :::`8888'.:.
- ::::::::::.888   '         .:::::::::::: 
- ::::::::::::.8    '      .:8::::::::::::.
-.::::::::::::::.        .:888:::::::::::::
-:::::::::::::::88:.__..:88888:::::::::::' 
- `'.:::::::::::88888888888.88:::::::::' 
-       `':::_:' -- '' -'-' `':_::::'`
-    </pre>
-            <div class="details-column">
-                <p class="instagram-handle">@silvasp012</p>
-                <p class="bio-poem">
-  [+] ler o mesmo livro duas vezes não fará o final ser diferente.<br>
-</p>
+<div class="falling-pills"></div>
 
-                <div class="music-vinyls">
-                    <div class="vinyl-record">
-                        <div class="vinyl-cover">
-                            <img src="images/typeonegative.jpg" alt="Capa do Album 1" class="album-cover">
-                        </div>
-                        <div class="vinyl-disc"></div>
-                    </div>
-                    <div class="vinyl-record">
-                        <div class="vinyl-cover">
-                            <img src="images/him.jpg" alt="Capa do Album 2" class="album-cover">
-                        </div>
-                        <div class="vinyl-disc"></div>
-                    </div>
-                    <div class="vinyl-record">
-                        <div class="vinyl-cover">
-                            <img src="images/system.jpg" alt="Capa do Album 3" class="album-cover">
-                        </div>
-                        <div class="vinyl-disc"></div>
-                    </div>
-                    <div class="vinyl-record">
-                        <div class="vinyl-cover">
-                            <img src="images/deftones.jpg" alt="Capa do Album 4" class="album-cover">
-                        </div>
-                        <div class="vinyl-disc"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <script src="app.js"></script>
+<div class="maintenance-text">
+    Em <span class="blur-word">Manutenção</span>
+    <div class="tooltip">Version 1.0.9</div>
+</div>
+
+<script>
+    const container = document.querySelector('.falling-pills');
+    const pillsCount = 30;
+
+    for(let i = 0; i < pillsCount; i++) {
+        const pill = document.createElement('div');
+        pill.classList.add('pill');
+        pill.style.left = Math.random() * 100 + 'vw';
+        pill.style.animationDuration = (5 + Math.random() * 5) + 's';
+
+        // Delay negativo pra animar no meio do ciclo e evitar "flash" no topo
+        pill.style.animationDelay = (-Math.random() * 10) + 's';
+
+        container.appendChild(pill);
+    }
+</script>
+
 </body>
-
 </html>
-
-

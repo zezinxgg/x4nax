@@ -2,19 +2,145 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>x4nax — </title>
-  <link href="https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>x4nax —</title>
+  <style>
+    /* Reset básico */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body, html {
+      height: 100%;
+      font-family: Georgia, serif;
+      background: linear-gradient(135deg, #020202, #0d0d0d);
+      color: #fff;
+      overflow: hidden;
+    }
+
+    .overlay {
+      height: 100%;
+      width: 100%;
+      background: rgba(0,0,0,0.65);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      animation: fadeIn 1.5s ease forwards;
+    }
+
+    .intro-box {
+      text-align: center;
+      max-width: 350px;
+      padding: 40px 30px;
+      background: rgba(17, 17, 17, 0.85);
+      border-radius: 15px;
+      box-shadow: 0 0 30px rgba(34, 0, 48, 0.1);
+      backdrop-filter: blur(10px);
+      animation: slideUp 1s ease forwards;
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    .logo {
+      color:rgba(81, 1, 92, 0.85);
+      font-size: 34px;
+      margin-bottom: 10px;
+      user-select: none;
+    }
+
+    .tagline {
+      font-size: 13px;
+      font-weight: 400;
+      margin-bottom: 10px;
+      letter-spacing: 1.2px;
+      color: #ccc;
+      font-style: italic;
+    }
+
+    .status {
+      font-size: 9px;
+      margin-bottom: 30px;
+      color: #999;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    .enter-btn {
+      display: inline-block;
+      font-family: 'Courier New', Courier, monospace;
+      padding: 12px 30px;
+      font-size: 17px;
+      font-weight: 700;
+      color: #fff;
+      border: 3px solid #4701492f;;
+      border-radius: 0px;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      transition: all 0.3s ease;
+      user-select: none;
+    }
+
+    .enter-btn:hover,
+    .enter-btn:focus {
+      background: #4701492f;
+      color: #ffffff;
+      box-shadow: 0 0 5px #0c0c0c;
+      outline: none;
+    }
+
+    /* Animações */
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Responsividade */
+    @media (max-width: 400px) {
+      .intro-box {
+        max-width: 90%;
+        padding: 30px 20px;
+      }
+      .logo {
+        font-size: 48px;
+      }
+      .enter-btn {
+        padding: 12px 30px;
+        font-size: 16px;
+        letter-spacing: 2px;
+      }
+    }
+  </style>
 </head>
 <body>
   <div class="overlay">
-    <div class="intro-box">
+    <div class="intro-box" id="introBox">
       <h1 class="logo">x4nax</h1>
       <p class="tagline">serviço de bio privada por @silvasp012</p>
       <p class="status">acesso limitado · beta fechado</p>
-      <a href="login.html" class="enter-btn">entrar</a>
+      <a href="login.html" class="enter-btn" tabindex="0">entrar</a>
     </div>
   </div>
+
+  <script>
+    window.addEventListener('load', () => {
+      const box = document.getElementById('introBox');
+      box.style.opacity = '1';
+      box.style.transform = 'translateY(0)';
+    });
+  </script>
 </body>
 </html>
