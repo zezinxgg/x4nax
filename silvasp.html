@@ -1,11 +1,15 @@
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
+
 a {
     color: #ffffff;
 }
@@ -14,73 +18,78 @@ body {
     background-color: #000000;
     color: #ffffff;
     font-family: 'Courier New', monospace;
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     -webkit-user-select: none; /* Safari */
-  -moz-user-select: none;    /* Firefox */
-  -ms-user-select: none;     /* Internet Explorer/Edge */
+    -moz-user-select: none;    /* Firefox */
+    -ms-user-select: none;     /* IE/Edge */
     align-items: center;
     justify-content: center;
-    overflow: hidden;
+    padding: 1rem;
 }
 
 .container {
     position: relative;
     width: 100%;
-    height: 100%;
+    max-width: 600px; /* limite para desktop */
+    padding: 0 1rem;
+    background: transparent;
+    z-index: 10;
 }
 
 .bio-content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
+    gap: 1rem;
 }
 
 .username {
-    font-family: 'Pixelify Sans';
-    font-size: 1.5rem;
+    font-family: 'Pixelify Sans', monospace;
+    font-size: clamp(0.5rem, 2vw, 2rem);
     font-weight: 100;
     letter-spacing: 0.1em;
-    margin-bottom: 1rem;
     animation: pulse 2s ease-in-out infinite;
 }
 
 .subtitle {
-             font-family: 'Indie Flower';
-    font-size: 1.2rem;
+    font-family: 'Indie Flower', cursive;
+    font-size: clamp(1rem, 3vw, 0.5rem);
     font-weight: 100;
     color: #b700ff;
-    margin-bottom: 2rem;
 }
 
 .points {
-    color:#660155c7;
+    color: #660155c7;
+    user-select: none;
 }
 
 .blinkies-container {
     display: flex;
-    user-select: none;      /* Bloqueia seleção de texto/imagem */
-  -webkit-user-drag: none; /* Bloqueia arrastar no Chrome/Safari */
-  pointer-events: none;    /* Bloqueia clique e seleção */
     gap: 1rem;
     justify-content: center;
     align-items: center;
+    user-select: none;
+    -webkit-user-drag: none;
+    pointer-events: none;
+    flex-wrap: wrap;
 }
 
 .blinkie-gif {
-    user-select: none;      /* Bloqueia seleção de texto/imagem */
-  -webkit-user-drag: none; /* Bloqueia arrastar no Chrome/Safari */
-  pointer-events: none;    /* Bloqueia clique e seleção */
+    width: clamp(40px, 12vw, 130px);
+    height: auto;
     filter: brightness(1.2) contrast(1.1);
 }
 
 .blinkie-gif2 {
-    user-select: none;      /* Bloqueia seleção de texto/imagem */
-  -webkit-user-drag: none; /* Bloqueia arrastar no Chrome/Safari */
-  pointer-events: none;    /* Bloqueia clique e seleção */
-    margin-top: 5%;
+    width: 100%;
+    max-width: 100px; /* diminuído para não ficar enorme */
+    height: auto;
+    margin-top: 1rem;
+    user-select: none;
+    -webkit-user-drag: none;
+    pointer-events: none;
 }
 
 .blinkie-gif:nth-child(1) { animation-delay: 0s; }
@@ -94,7 +103,7 @@ body {
 }
 
 .powered-blinkie {
-    position: absolute;
+    position: fixed;  /* fixo na viewport */
     bottom: 1rem;
     left: 1rem;
     text-decoration: none;
@@ -102,6 +111,7 @@ body {
     color: #333333;
     font-family: 'Courier New', monospace;
     transition: color 0.3s ease;
+    z-index: 1000; /* na frente */
 }
 
 .powered-blinkie:hover {
@@ -113,23 +123,39 @@ body {
     filter: contrast(1.2);
 }
 
-@media (max-width: 768px) {
+/* Canvas */
+canvas#pillsCanvas {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    width: 100vw !important;
+    height: 100vh !important;
+    pointer-events: none !important;
+    z-index: 1 !important;
+}
+
+/* Pequenos ajustes para telas menores que 480px */
+@media (max-width: 480px) {
     .username {
         font-size: 2rem;
     }
-    
+
     .subtitle {
-        font-family: 'Google Sans Code';
-        font-size: 1rem;
+        font-size: 1.2rem;
     }
-    
+
+    .blinkies-container {
+        gap: 0.5rem;
+    }
+
     .blinkie-gif {
-        width: 40px;
-        height: 40px;
+        width: clamp(40px, 20vw, 80px);
+    }
+
+    .blinkie-gif2 {
+        max-width: 90vw;
     }
 }
-
-
 </style>
 
 <!DOCTYPE html>
