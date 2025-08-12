@@ -1,156 +1,277 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-<title>@silvasp012</title>
-
-<!-- Fonte Pixel -->
-<link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
-
 <style>
-  body {
+    @import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+
+* {
     margin: 0;
-    background-color: #121212;
-    font-family: 'Pixelify Sans', sans-serif;
-    color: white;
-    overflow-x: hidden;
-  }
+    padding: 0;
+    box-sizing: border-box;
+}
 
-  /* Switch estilo */
-  .switch {
-    position: fixed;
-    top: 10px;
-    left: 10px;
-    z-index: 12000;
-    display: inline-block;
-    width: 50px;
-    height: 24px;
-  }
-  .switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-  }
-  .slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0; left: 0;
-    right: 0; bottom: 0;
-    background-color: #ccc;
-    transition: .4s;
-    border-radius: 34px;
-  }
-  .slider:before {
-    position: absolute;
-    content: "";
-    height: 18px;
-    width: 18px;
-    left: 3px;
-    bottom: 3px;
-    background-color: white;
-    transition: .4s;
-    border-radius: 50%;
-  }
-  input:checked + .slider {
-    background-color: #4CAF50;
-  }
-  input:checked + .slider:before {
-    transform: translateX(26px);
-  }
+a {
+    color: #ffffff;
+}
 
-  /* Player */
-  #media-player {
-    width: 300px;
-    height: 150px;
-    background-color: #222;
-    border: 2px solid #444;
-    border-radius: 10px;
-    padding: 10px;
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.5);
-  }
-
-  /* Vinil */
-  #vinyl-disc {
-    position: fixed;
-    top: 80px;
-    left: 20px;
-    width: 150px;
-    height: 150px;
-    background:
-      repeating-radial-gradient(circle, #222 0px, #222 1px, #111 2px),
-      radial-gradient(circle at center, #333 40%, #000 100%);
-    border-radius: 50%;
-    box-shadow: 0 0 15px rgba(0,0,0,0.6);
+body {
+    background-color: #000000;
+    color: #ffffff;
+    font-family: 'Courier New', monospace;
+    min-height: 100vh;
     display: flex;
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none;    /* Firefox */
+    -ms-user-select: none;     /* IE/Edge */
     align-items: center;
     justify-content: center;
-  }
+    padding: 1rem;
+}
 
-  /* Buraco no meio */
-  #vinyl-disc::before {
-    content: "";
-    width: 12px;
-    height: 12px;
-    background-color: #111;
-    border: 2px solid #555;
-    border-radius: 50%;
-    z-index: 2;
-  }
+.container {
+    position: relative;
+    width: 100%;
+    max-width: 600px; /* limite para desktop */
+    padding: 0 1rem;
+    background: transparent;
+    z-index: 10;
+}
 
-  /* Animação do vinil */
-  .spin {
-    animation: rotateVinyl 3s linear infinite;
-  }
-  @keyframes rotateVinyl {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-  }
+.bio-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1rem;
+}
+
+.username {
+    font-family: 'Pixelify Sans', monospace;
+    font-size: clamp(0.5rem, 2vw, 2rem);
+    font-weight: 100;
+    letter-spacing: 0.1em;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.subtitle {
+    font-family: 'Indie Flower', cursive;
+    font-size: clamp(1rem, 3vw, 0.5rem);
+    font-weight: 100;
+    color: #b700ff;
+}
+
+.points {
+    color: #660155c7;
+    user-select: none;
+}
+
+.blinkies-container {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+    -webkit-user-drag: none;
+    pointer-events: none;
+    flex-wrap: wrap;
+}
+
+.blinkie-gif {
+        user-select: none;
+    -webkit-user-drag: none;
+    pointer-events: none;
+    width: clamp(40px, 12vw, 5000px);
+    height: auto;
+    filter: brightness(1.2) contrast(1.1);
+}
+
+.blinkie-gif2 {
+    width: 500%;
+    max-width: 500px; /* diminuído para não ficar enorme */
+    height: 500px;
+    margin-top: 1rem;
+    user-select: none;
+    -webkit-user-drag: none;
+    pointer-events: none;
+}
+
+.blinkie-gif:nth-child(1) { animation-delay: 0s; }
+.blinkie-gif:nth-child(2) { animation-delay: 0.3s; }
+.blinkie-gif:nth-child(3) { animation-delay: 0.6s; }
+.blinkie-gif:nth-child(4) { animation-delay: 0.9s; }
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.8; }
+    50% { opacity: 1; }
+}
+
+.powered-blinkie {
+    position: fixed;  /* fixo na viewport */
+    bottom: 1rem;
+    left: 1rem;
+    text-decoration: none;
+    font-size: 0.8rem;
+    color: #333333;
+    font-family: 'Courier New', monospace;
+    transition: color 0.3s ease;
+    z-index: 1000; /* na frente */
+}
+
+.powered-blinkie:hover {
+    color: #666666;
+}
+
+.powered-blinkie img {
+    image-rendering: pixelated;
+    filter: contrast(1.2);
+}
+
+/* Canvas */
+canvas#pillsCanvas {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    width: 100vw !important;
+    height: 100vh !important;
+    pointer-events: none !important;
+    z-index: 1 !important;
+}
+
+/* Pequenos ajustes para telas menores que 480px */
+@media (max-width: 480px) {
+    .username {
+        font-size: 2rem;
+    }
+
+    .subtitle {
+        font-size: 1.2rem;
+    }
+
+    .blinkies-container {
+        gap: 0.5rem;
+    }
+
+    .blinkie-gif {
+        width: clamp(40px, 20vw, 80px);
+    }
+
+    .blinkie-gif2 {
+        max-width: 90vw;
+    }
+}
 </style>
+
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@silvasp012</title>
 </head>
 <body>
+    <div class="container">
+        <canvas id="pillsCanvas"></canvas>
+        <div class="bio-content">
+<h1 class="username">
+  <img src="images/blinkiesCafe-Ny.gif" alt="skull" class="blinkie-gif">
+        <a href="https://x4nax.vercel.app" target="_blank" class="powered-blinkie">
+            <img src="images/poweredbyx4nax.gif" alt="powered by x4nax">
+        </a>
+    </div>
 
-<!-- Switch -->
-<label class="switch">
-  <input type="checkbox" id="player-toggle" checked>
-  <span class="slider"></span>
-</label>
+    <script>
 
-<!-- Vinil -->
-<div id="vinyl-disc" class="spin"></div>
+document.addEventListener('contextmenu', event => event.preventDefault());
 
-<!-- Player -->
-<div id="media-player">
-  <h3>Media Player</h3>
-  <audio controls>
-    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
-    Seu navegador não suporta áudio.
-  </audio>
-</div>
-
-<script>
-  const toggle = document.getElementById('player-toggle');
-  const mediaPlayer = document.getElementById('media-player');
-  const vinyl = document.getElementById('vinyl-disc');
-
-  function updateState() {
-    if (toggle.checked) {
-      mediaPlayer.style.display = 'block';
-      vinyl.classList.add('spin');
-    } else {
-      mediaPlayer.style.display = 'none';
-      vinyl.classList.remove('spin');
-    }
+document.addEventListener('keydown', event => {
+  if (event.ctrlKey && (event.key === 'u' || event.key === 'U')) {
+    event.preventDefault();
   }
+  if (event.ctrlKey && event.shiftKey && (event.key === 'i' || event.key === 'I')) {
+    event.preventDefault();
+  }
+  if (event.key === 'F12') {
+    event.preventDefault();
+  }
+  if (event.ctrlKey && (event.key === 's' || event.key === 'S')) {
+    event.preventDefault();
+  }
+});
+        const canvas = document.getElementById('pillsCanvas');
+        const ctx = canvas.getContext('2d');
+        const pills = [];
 
-  toggle.addEventListener('change', updateState);
+        canvas.style.position = 'absolute';
+        canvas.style.top = '0';
+        canvas.style.left = '0';
+        canvas.style.width = '100%';
+        canvas.style.height = '100%';
+        canvas.style.pointerEvents = 'none';
+        canvas.style.zIndex = '1';
 
-  // Estado inicial
-  updateState();
-</script>
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
 
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        class Pill {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = -5;
+                this.size = Math.random() * 5 + 4;
+                this.speed = Math.random() * 2 + 1;
+                this.rotation = Math.random() * 360;
+                this.rotationSpeed = (Math.random() - 0.5) * 4;
+                this.opacity = Math.random() * 0.5 + 0.3;
+                this.image = new Image();
+                this.image.src = 'images/folha.png';
+            }
+
+            update() {
+                this.y += this.speed;
+                this.rotation += this.rotationSpeed;
+                
+                if (this.y > canvas.height + 20) {
+                    this.y = -20;
+                    this.x = Math.random() * canvas.width;
+                }
+            }
+
+            draw() {
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate((this.rotation * Math.PI) / 180);
+                ctx.globalAlpha = this.opacity;
+                ctx.drawImage(this.image, -this.size, -this.size/2, this.size * 4, this.size * 2);
+                ctx.restore();
+            }
+        }
+
+        for (let i = 0; i < 30; i++) {
+            pills.push(new Pill());
+            pills[i].y = Math.random() * canvas.height;
+            pills[i].x = Math.random() * canvas.width;
+        }
+
+        Promise.all(pills.map(pill => new Promise(resolve => {
+            pill.image.onload = resolve;
+        }))).then(() => {
+            animate();
+        });
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            pills.forEach(pill => {
+                pill.update();
+                pill.draw();
+            });
+            
+            requestAnimationFrame(animate);
+        }
+    </script>
 </body>
 </html>
