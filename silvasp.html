@@ -1,139 +1,258 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Site em Manutenção</title>
 <style>
-    * {
-        margin: 0; padding: 0; box-sizing: border-box;
+    @import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+a {
+    color: #ffffff;
+}
+
+body {
+    background-color: #000000;
+    color: #ffffff;
+    font-family: 'Courier New', monospace;
+    height: 100vh;
+    display: flex;
+    -webkit-user-select: none; /* Safari */
+  -moz-user-select: none;    /* Firefox */
+  -ms-user-select: none;     /* Internet Explorer/Edge */
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.bio-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.username {
+    font-family: 'Pixelify Sans';
+    font-size: 1.5rem;
+    font-weight: 100;
+    letter-spacing: 0.1em;
+    margin-bottom: 1rem;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.subtitle {
+             font-family: 'Indie Flower';
+    font-size: 1.2rem;
+    font-weight: 100;
+    color: #b700ff;
+    margin-bottom: 2rem;
+}
+
+.points {
+    color:#660155c7;
+}
+
+.blinkies-container {
+    display: flex;
+    user-select: none;      /* Bloqueia seleção de texto/imagem */
+  -webkit-user-drag: none; /* Bloqueia arrastar no Chrome/Safari */
+  pointer-events: none;    /* Bloqueia clique e seleção */
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.blinkie-gif {
+    user-select: none;      /* Bloqueia seleção de texto/imagem */
+  -webkit-user-drag: none; /* Bloqueia arrastar no Chrome/Safari */
+  pointer-events: none;    /* Bloqueia clique e seleção */
+    filter: brightness(1.2) contrast(1.1);
+}
+
+.blinkie-gif2 {
+    user-select: none;      /* Bloqueia seleção de texto/imagem */
+  -webkit-user-drag: none; /* Bloqueia arrastar no Chrome/Safari */
+  pointer-events: none;    /* Bloqueia clique e seleção */
+    margin-top: 5%;
+}
+
+.blinkie-gif:nth-child(1) { animation-delay: 0s; }
+.blinkie-gif:nth-child(2) { animation-delay: 0.3s; }
+.blinkie-gif:nth-child(3) { animation-delay: 0.6s; }
+.blinkie-gif:nth-child(4) { animation-delay: 0.9s; }
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.8; }
+    50% { opacity: 1; }
+}
+
+.powered-blinkie {
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+    text-decoration: none;
+    font-size: 0.8rem;
+    color: #333333;
+    font-family: 'Courier New', monospace;
+    transition: color 0.3s ease;
+}
+
+.powered-blinkie:hover {
+    color: #666666;
+}
+
+.powered-blinkie img {
+    image-rendering: pixelated;
+    filter: contrast(1.2);
+}
+
+@media (max-width: 768px) {
+    .username {
+        font-size: 2rem;
     }
-    body {
-        background-color: #000;
-        height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-family: Georgia, serif;
-        overflow: hidden;
-        position: relative;
+    
+    .subtitle {
+        font-family: 'Google Sans Code';
+        font-size: 1rem;
     }
-    .falling-pills {
-        position: fixed;
-        top: 0; left: 0;
-        width: 100%; height: 100%;
-        pointer-events: none;
-        z-index: -1;
-        overflow: visible;
+    
+    .blinkie-gif {
+        width: 40px;
+        height: 40px;
     }
-    .pill {
-        position: absolute;
-        width: 30px; height: 30px;
-        background-image: url('images/pills.png');
-        background-size: contain;
-        background-repeat: no-repeat;
-        background-position: center;
-        opacity: 0; /* começa invisível */
-        animation-name: fall;
-        animation-timing-function: linear;
-        animation-iteration-count: infinite;
-        animation-fill-mode: forwards;
-        will-change: transform;
-    }
-    /* fallback emoji caso não carregue imagem */
-    .pill::before {
-        content: '';
-        position: absolute;
-        font-size: 24px;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        display: block;
-    }
-    @keyframes fall {
-        0% {
-            transform: translateY(-40px) rotate(0deg);
-            opacity: 0;
-        }
-        10% {
-            opacity: 1;
-        }
-        90% {
-            opacity: 1;
-        }
-        100% {
-            transform: translateY(100vh) rotate(360deg);
-            opacity: 0;
-        }
-    }
-    .maintenance-text {
-        color: white;
-        font-size: 42px;
-        cursor: pointer;
-        position: relative;
-        user-select: none;
-        font-weight: 300;
-        letter-spacing: 2px;
-        transition: all 0.3s ease;
-    }
-    .blur-word {
-        text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
-        filter: blur(1px);
-        transition: all 0.3s ease;
-    }
-    .maintenance-text:hover .blur-word {
-        filter: blur(0px);
-        text-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
-    }
-    .tooltip {
-        position: absolute;
-        bottom: 120%;
-        left: 50%;
-        transform: translateX(-50%);
-        color: rgba(255, 255, 255, 0.9);
-        font-size: 18px;
-        font-family: 'Brush Script MT', cursive;
-        font-style: italic;
-        white-space: nowrap;
-        opacity: 0;
-        visibility: hidden;
-        transition: all 0.4s ease;
-        text-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
-        filter: drop-shadow(0 2px 8px rgba(255, 255, 255, 0.3));
-        letter-spacing: 1px;
-    }
-    .maintenance-text:hover .tooltip {
-        opacity: 1;
-        visibility: visible;
-        transform: translateX(-50%) translateY(-5px);
-    }
+}
+
+
 </style>
+
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@silvasp012</title>
 </head>
 <body>
+    <div class="container">
+        <canvas id="pillsCanvas"></canvas>
+        <div class="bio-content">
+<h1 class="username">
+  <a href="https://www.instagram.com/silvasp012/" target="_blank">@silvasp012</a>
+</h1>            <p class="subtitle">World is yours.</p>
+            <p class="points">.............................................................</p>
+            <div class="blinkies-container">
+                <img src="images/blinkie1.gif" alt="skull" class="blinkie-gif">
+                <img src="images/blinkie2.gif" alt="cross" class="blinkie-gif">
+                <img src="images/blinkie4.gif" alt="coffin" class="blinkie-gif">
+                <img src="images/blinkie5.gif" alt="uaiso" class="blinkie-gif">
+            </div>
+            <img src="images/blood.jpg" alt ="uainaoze" class="blinkie-gif2">
+        </div>
+        <a href="https://x4nax.vercel.app" target="_blank" class="powered-blinkie">
+            <img src="images/poweredbyx4nax.gif" alt="powered by x4nax">
+        </a>
+    </div>
 
-<div class="falling-pills"></div>
+    <script>
 
-<div class="maintenance-text">
-    Em <span class="blur-word">Manutenção</span>
-    <div class="tooltip">Version 1.0.9</div>
-</div>
+document.addEventListener('contextmenu', event => event.preventDefault());
 
-<script>
-    const container = document.querySelector('.falling-pills');
-    const pillsCount = 30;
+document.addEventListener('keydown', event => {
+  if (event.ctrlKey && (event.key === 'u' || event.key === 'U')) {
+    event.preventDefault();
+  }
+  if (event.ctrlKey && event.shiftKey && (event.key === 'i' || event.key === 'I')) {
+    event.preventDefault();
+  }
+  if (event.key === 'F12') {
+    event.preventDefault();
+  }
+  if (event.ctrlKey && (event.key === 's' || event.key === 'S')) {
+    event.preventDefault();
+  }
+});
+        const canvas = document.getElementById('pillsCanvas');
+        const ctx = canvas.getContext('2d');
+        const pills = [];
 
-    for(let i = 0; i < pillsCount; i++) {
-        const pill = document.createElement('div');
-        pill.classList.add('pill');
-        pill.style.left = Math.random() * 100 + 'vw';
-        pill.style.animationDuration = (5 + Math.random() * 5) + 's';
+        canvas.style.position = 'absolute';
+        canvas.style.top = '0';
+        canvas.style.left = '0';
+        canvas.style.width = '100%';
+        canvas.style.height = '100%';
+        canvas.style.pointerEvents = 'none';
+        canvas.style.zIndex = '1';
 
-        // Delay negativo pra animar no meio do ciclo e evitar "flash" no topo
-        pill.style.animationDelay = (-Math.random() * 10) + 's';
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
 
-        container.appendChild(pill);
-    }
-</script>
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
 
+        class Pill {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = -5;
+                this.size = Math.random() * 5 + 4;
+                this.speed = Math.random() * 2 + 1;
+                this.rotation = Math.random() * 360;
+                this.rotationSpeed = (Math.random() - 0.5) * 4;
+                this.opacity = Math.random() * 0.5 + 0.3;
+                this.image = new Image();
+                this.image.src = 'images/folha.png';
+            }
+
+            update() {
+                this.y += this.speed;
+                this.rotation += this.rotationSpeed;
+                
+                if (this.y > canvas.height + 20) {
+                    this.y = -20;
+                    this.x = Math.random() * canvas.width;
+                }
+            }
+
+            draw() {
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate((this.rotation * Math.PI) / 180);
+                ctx.globalAlpha = this.opacity;
+                ctx.drawImage(this.image, -this.size, -this.size/2, this.size * 4, this.size * 2);
+                ctx.restore();
+            }
+        }
+
+        for (let i = 0; i < 30; i++) {
+            pills.push(new Pill());
+            pills[i].y = Math.random() * canvas.height;
+            pills[i].x = Math.random() * canvas.width;
+        }
+
+        Promise.all(pills.map(pill => new Promise(resolve => {
+            pill.image.onload = resolve;
+        }))).then(() => {
+            animate();
+        });
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            pills.forEach(pill => {
+                pill.update();
+                pill.draw();
+            });
+            
+            requestAnimationFrame(animate);
+        }
+    </script>
 </body>
 </html>
