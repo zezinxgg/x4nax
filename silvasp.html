@@ -9,6 +9,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
+        /* ==============================================
+        === ESTILO WEBCORE APLICADO ABAIXO           ===
+        ==============================================
+        */
         @font-face {
             font-family: "Primary";
             src: url("fonts/primary.ttf") format("truetype");
@@ -324,7 +328,7 @@
         <a href="https://x4nax.vercel.app" target="_blank">
             <img src="images/poweredbyx4nax.gif" class="asshole" alt="Powered by X4nax">
         </a>
-        <<div id="volume-container">
+        <div id="volume-container">
     <i class="fas fa-volume-up" id="volume-icon"></i>
     <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="0.2">
     <audio id="audio" src="snds/nsurprises.mp3" autoplay loop></audio>
@@ -373,15 +377,21 @@ function forceCustomCursor() {
 // Elementos
 const audio = document.getElementById("audio");
 const volumeIcon = document.getElementById("volume-icon");
-const volumeSlider = document.getElementById("volume-slider"); // corrigido
-const volumeContainer = document.getElementById("volume-container"); // corrigido
+const volumeSlider = document.getElementById("volume-slider");
+const volumeContainer = document.getElementById("volume-container");
 
 // Inicializa volume
 audio.volume = 0.2;
 
+// Tenta iniciar o áudio automaticamente
+audio.play().catch(err => {
+    console.log("Não foi possível tocar o áudio automaticamente:", err);
+    // Normalmente isso acontece porque o navegador bloqueia autoplay sem interação do usuário
+});
+
 // Alterna a visibilidade do slider ao clicar no ícone
 volumeIcon.addEventListener("click", (e) => {
-    e.stopPropagation(); // evita que clique feche imediatamente
+    e.stopPropagation();
     volumeContainer.classList.toggle("active");
 });
 
